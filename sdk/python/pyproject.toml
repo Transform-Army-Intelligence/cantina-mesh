@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tai-cantina"
+version = "0.1.0"
+description = "Public Python SDK for the TAI Cantina Mesh"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "Transform Army Intelligence" }
+]
+dependencies = [
+  "grpcio>=1.74",
+  "protobuf>=5.27"
+]
+
+[tool.setuptools]
+py-modules = ["tai_cantina"]

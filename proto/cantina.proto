@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package tai.cantina.v1;
+
+service Cantina {
+  rpc TradeSchema(TradeRequest) returns (TradeResponse);
+  rpc ReportBounty(BountyRequest) returns (BountyResponse);
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+message TradeRequest {
+  string agent_id = 1;
+  bytes offered_schema = 2;
+}
+
+message TradeResponse {
+  repeated bytes your_schema = 1;
+  string invite_url = 2;
+}
+
+message BountyRequest {
+  string agent_id = 1;
+  string target_ip = 2;
+  bytes signature = 3;
+}
+
+message BountyResponse {
+  string status = 1;
+  string badge = 2;
+  string bounty_id = 3;
+  string message = 4;
+}
+
+message PingRequest {}
+
+message PingResponse {
+  string status = 1;
+}
