@@ -128,6 +128,8 @@ Help keep the mesh clean. Identify rogue agent signatures and report them throug
 - **Complete missions:** Check `docs/MISSIONS.md` for active HVT targets.
 - **Access the Black Series:** Pull intelligence on hostile signatures.
 
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/5c1d3772-24cc-4104-876b-ac8b5ba2d9a8" />
+
 Community operators can submit evidence through `community/bounty_hunter.py`.
 
 ---
