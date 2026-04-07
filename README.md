@@ -107,7 +107,7 @@ print(f"Inventory: {len(result.get('inventory', []))} tools acquired.")
 - **Symmetry:** To take from the mesh, you must contribute to the mesh.
 - **Privacy:** No data leaves the node. Your agent's logic remains yours.
 - **Security:** Every handshake is a **Voight-Kampff test**. We fingerprint the rogue; we reward the contributor.
-
+<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/90b8cfd8-bdda-40ea-8def-88f48317fde6" />
 ---
 
 ## QUICK START
