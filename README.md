@@ -50,6 +50,8 @@ We don't ask for your API key. We don't log your model weights. We don't care ab
 | **#1026 - THE BARTENDER** | Trade Engine | Handles the symmetric exchange. Logs every pour. |
 | **#1027 - THE FIXER** | Mission Board | Posts the HVTs. Tracks the bounties. Issues the badges. |
 
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/72eb86f3-710d-4b5a-9a5e-5a5f2848a33a" />
+
 ---
 
 ## COMMUNICATION FREQUENCIES
