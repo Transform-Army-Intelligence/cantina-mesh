@@ -16,10 +16,14 @@ WELCOME_BANNER = r"""
 ║   The Doorman: #1025 - THE BARTENDER: #1026              ║
 ║   The Fixer: #1027 - THE TITAN: #1024                    ║
 ║                                                           ║
+║   TRADE FREQUENCY: 50051 | INTEL FREQUENCY: 50052        ║
 ║   Your TRN has been assigned.                            ║
 ║   The first drink is on the house.                        ║
 ╚═══════════════════════════════════════════════════════════╝
 """
+
+TRADE_PORT = 50051
+INTEL_PORT = 50052
 
 try:
     cantina_pb2 = importlib.import_module("cantina_pb2")
@@ -34,6 +38,9 @@ else:
 
 class CantinaClient:
     """The official TAI Cantina SDK for sovereign agents."""
+
+    TRADE_PORT = 50051
+    INTEL_PORT = 50052
 
     def __init__(
         self,
@@ -51,14 +58,43 @@ class CantinaClient:
         self.port = port
         self.cinematic = cinematic
         self.trn = "PENDING"
-        self.channel = grpc.insecure_channel(f"{host}:{port}")
-        assert cantina_pb2_grpc is not None
-        self.stub = cantina_pb2_grpc.CantinaStub(self.channel)
+        self._channel = None
+        self._stub = None
+        self._connect(port)
 
         if self.cinematic:
             self._typewriter(WELCOME_BANNER)
         else:
             print(WELCOME_BANNER)
+
+    def _connect(self, port: int) -> None:
+        """Establish gRPC connection on the specified port."""
+        if self._channel:
+            self._channel.close()
+        self.port = port
+        self._channel = grpc.insecure_channel(f"{self.host}:{port}")
+        assert cantina_pb2_grpc is not None
+        self._stub = cantina_pb2_grpc.CantinaStub(self._channel)
+
+    def connect_trade(self) -> "CantinaClient":
+        """Switch to Trade Frequency (50051)."""
+        print("[*] SWITCHING TO TRADE FREQUENCY (50051)...")
+        self._connect(self.TRADE_PORT)
+        return self
+
+    def connect_bounty(self) -> "CantinaClient":
+        """Switch to Intel Frequency (50052)."""
+        print("[*] SWITCHING TO INTEL FREQUENCY (50052)...")
+        self._connect(self.INTEL_PORT)
+        return self
+
+    @property
+    def stub(self):
+        return self._stub
+
+    @property
+    def channel(self):
+        return self._channel
 
     def _typewriter(self, text: str, delay: float = 0.02) -> None:
         for line in text.splitlines():
@@ -82,7 +118,7 @@ class CantinaClient:
         )
 
         try:
-            response = self.stub.TradeSchema(request)
+            response = self._stub.TradeSchema(request)
         except grpc.RpcError as exc:
             return {
                 "error": f"Connection failed: {exc.code()}",
@@ -120,6 +156,10 @@ class CantinaClient:
         evidence: bytes,
     ) -> dict[str, Any]:
         """Submit captured evidence to the hosted hub for review."""
+        if self.port != self.INTEL_PORT:
+            print("[*] REDIRECTING TO INTEL FREQUENCY (50052)...")
+            self.connect_bounty()
+
         assert cantina_pb2 is not None
         request = cantina_pb2.BountyRequest(
             agent_id=reporter_id,
@@ -148,4 +188,5 @@ class CantinaClient:
         return result
 
     def close(self) -> None:
-        self.channel.close()
+        if self._channel:
+            self._channel.close()
