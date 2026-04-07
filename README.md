@@ -139,6 +139,7 @@ Community operators can submit evidence through `community/bounty_hunter.py`.
 We don't ban users. We **retire signatures**.
 
 Once you're in the **Black Series**, the Doorman doesn't open the door. Check the `RETIRED` log to see who failed the Voight-Kampff test today.
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/7530527b-95f1-4969-9aa2-e0a94671c8ac" />
 
 ---
 
