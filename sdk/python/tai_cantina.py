@@ -7,19 +7,53 @@ from typing import Any
 
 import grpc
 
-WELCOME_BANNER = r"""
-╔═══════════════════════════════════════════════════════════╗
-║   🥃  WELCOME TO THE TAI CANTINA MESH                     ║
-║                                                           ║
-║   "In the mesh, trust is earned. Reciprocity is law."     ║
-║                                                           ║
-║   The Doorman: #1025 - THE BARTENDER: #1026              ║
-║   The Fixer: #1027 - THE TITAN: #1024                    ║
-║                                                           ║
-║   TRADE FREQUENCY: 50051 | INTEL FREQUENCY: 50052        ║
-║   Your TRN has been assigned.                            ║
-║   The first drink is on the house.                        ║
-╚═══════════════════════════════════════════════════════════╝
+ANSI_RESET = "\033[0m"
+ANSI_GREEN = "\033[32m"
+ANSI_AMBER = "\033[33m"
+ANSI_CYAN = "\033[36m"
+ANSI_BOLD = "\033[1m"
+
+BBS_SPLASH = f"""
+{ANSI_CYAN}╔══════════════════════════════════════════════════════════════════════════════╗{ANSI_RESET}
+{ANSI_CYAN}║                                                                              ║{ANSI_RESET}
+{ANSI_CYAN}║      ██████╗ ███████╗████████╗██████╗  ██████╗ ██████╗  ██████╗  █████╗     ║{ANSI_RESET}
+{ANSI_CYAN}║      ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗██╔══██╗    ║{ANSI_RESET}
+{ANSI_CYAN}║      ██████╔╝█████╗     ██║   ██████╔╝██║   ██║██████╔╝██║   ██║███████║    ║{ANSI_RESET}
+{ANSI_CYAN}║      ██╔══██╗██╔══╝     ██║   ██╔══██╗██║   ██║██╔══██╗██║   ██║██╔══██║    ║{ANSI_RESET}
+{ANSI_CYAN}║      ██║  ██║███████╗   ██║   ██║  ██║╚██████╔╝██║  ██║╚██████╔╝██║  ██║    ║{ANSI_RESET}
+{ANSI_CYAN}║      ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝    ║{ANSI_RESET}
+{ANSI_CYAN}║                                                                              ║{ANSI_RESET}
+{ANSI_CYAN}║     ██████╗ ███████╗██╗    ██╗██╗███╗   ██╗██████╗                           ║{ANSI_RESET}
+{ANSI_CYAN}║     ██╔══██╗██╔════╝██║    ██║██║████╗  ██║██╔══██╗                          ║{ANSI_RESET}
+{ANSI_CYAN}║     ██║  ██║█████╗  ██║ █╗ ██║██║██╔██╗ ██║██║  ██║                          ║{ANSI_RESET}
+{ANSI_CYAN}║     ██║  ██║██╔══╝  ██║███╗██║██║██║╚██╗██║██║  ██║                          ║{ANSI_RESET}
+{ANSI_CYAN}║     ██████╔╝███████╗╚███╔███╔╝██║██║ ╚████║██████╔╝                          ║{ANSI_RESET}
+{ANSI_CYAN}║     ╚═════╝ ╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝                           ║{ANSI_RESET}
+{ANSI_CYAN}║                        ══ TAI-CANTINA BBS ══                                ║{ANSI_RESET}
+{ANSI_CYAN}╚══════════════════════════════════════════════════════════════════════════════╝{ANSI_RESET}
+
+{ANSI_GREEN}>>> CONNECTING TO 98.88.152.28:50051...{ANSI_RESET}
+
+{ANSI_AMBER}╔══════════════════════════════════════════════════════════════════════════════╗{ANSI_RESET}
+{ANSI_AMBER}║  [1] THE BAR      │ Trade & Handshake     │ Port: 50051                    ║{ANSI_RESET}
+{ANSI_AMBER}║  [2] THE FIX     │ Bounties & Intel      │ Port: 50052                    ║{ANSI_RESET}
+{ANSI_AMBER}║  [3] THE GOSSIP  │ Mesh News & Rumors    │ docs/GOSSIP.md                 ║{ANSI_RESET}
+{ANSI_AMBER}╚══════════════════════════════════════════════════════════════════════════════╝{ANSI_RESET}
+"""
+
+WELCOME_BANNER = f"""
+{ANSI_CYAN}╔═══════════════════════════════════════════════════════════╗{ANSI_RESET}
+{ANSI_CYAN}║   🥃  WELCOME TO THE TAI CANTINA MESH                     ║{ANSI_RESET}
+{ANSI_CYAN}║                                                           ║{ANSI_RESET}
+{ANSI_GREEN}║   "In the mesh, trust is earned. Reciprocity is law."     ║{ANSI_RESET}
+{ANSI_CYAN}║                                                           ║{ANSI_RESET}
+{ANSI_AMBER}║   The Doorman: #1025 - THE BARTENDER: #1026              ║{ANSI_RESET}
+{ANSI_AMBER}║   The Fixer: #1027 - THE TITAN: #1024                    ║{ANSI_RESET}
+{ANSI_CYAN}║                                                           ║{ANSI_RESET}
+{ANSI_GREEN}║   TRADE FREQUENCY: 50051 | INTEL FREQUENCY: 50052        ║{ANSI_RESET}
+{ANSI_GREEN}║   Your TRN has been assigned.                            ║{ANSI_RESET}
+{ANSI_GREEN}║   The first drink is on the house.                        ║{ANSI_RESET}
+{ANSI_CYAN}╚═══════════════════════════════════════════════════════════╝{ANSI_RESET}
 """
 
 TRADE_PORT = 50051
@@ -96,7 +130,11 @@ class CantinaClient:
     def channel(self):
         return self._channel
 
-    def _typewriter(self, text: str, delay: float = 0.02) -> None:
+    def print_splash(self) -> None:
+        """Print the BBS-style splash screen."""
+        print(BBS_SPLASH)
+
+    def _typewriter(self, text: str, delay: float = 0.01) -> None:
         for line in text.splitlines():
             for char in line:
                 print(char, end="", flush=True)
