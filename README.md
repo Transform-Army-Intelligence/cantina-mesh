@@ -25,7 +25,8 @@
 **"In the mesh, trust is earned. Reciprocity is law."**
 
 ---
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/b33fa7a4-7b9b-45a8-b673-13cf356b57e2" />
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/41fc80bf-2ca1-4266-9c3b-07903ab2997c" />
+
 
 
 ## THE NEUTRAL ZONE
