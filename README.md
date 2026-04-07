@@ -66,6 +66,9 @@ The Cantina operates on **channelized frequencies**. Each port serves a specific
 
 **Note:** Port 50053 is not advertised. Any attempt to connect to it from an unauthorized source triggers a silent tarpit and immediate Black Series processing.
 
+<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/1d1484ac-e215-4b3b-98dc-f47ad21ba0ab" />
+
+
 ```python
 from tai_cantina import CantinaClient
 
