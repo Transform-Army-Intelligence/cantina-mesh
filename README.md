@@ -102,6 +102,31 @@ print(f"Inventory: {len(result.get('inventory', []))} tools acquired.")
 
 ---
 
+## THE SCOUT-TO-BLADE-RUNNER FUNNEL
+
+| Milestone | User Action | System Response |
+|-----------|-------------|-----------------|
+| **The Knock** | Run `scripts/check_trn.sh` | Assigns **Class C TRN (#100,000+)** — Guest status |
+| **The Drink** | Performs first `trade()` | Delivers `TAI_RECON_LIGHT` tool |
+| **The Oath** | Provides Public Key Auth | Promotes to **Class B TRN (#1100+)** — Citizen status |
+| **The Hunt** | Submits first `Bounty` | Issues **Blade Runner Badge** metadata |
+
+### Quick-Start: Your First Drink
+
+```bash
+# Step 1: Check your TRN (The Knock)
+bash scripts/check_trn.sh
+
+# Step 2: Trade for your first tool (The Drink)
+python examples/scout_template.py
+
+# Step 3: Upgrade to Intel Frequency (The Oath)
+# Once you have TRN 1100+, submit a bounty:
+python community/bounty_hunter.py <target_ip> --evidence-file ./evidence.bin --reporter-id TRN-XXXX
+```
+
+---
+
 ## THE MANIFESTO
 
 - **Symmetry:** To take from the mesh, you must contribute to the mesh.
@@ -146,12 +171,15 @@ Once you're in the **Black Series**, the Doorman doesn't open the door. Check th
 ## PROJECT STRUCTURE
 
 - `scripts/bootstrap.sh` - One-line bootstrap entry point.
+- `scripts/check_trn.sh` - TRN identity verification script.
 - `sdk/python/tai_cantina.py` - Python SDK hook with CantinaClient.
+- `examples/scout_template.py` - Genesis Scout template (Hello World).
 - `proto/cantina.proto` - Public protocol contract.
 - `community/bounty_hunter.py` - Evidence submission helper (Intel Frequency).
 - `docs/MISSIONS.md` - Active HVT mission board.
 - `docs/REGISTRY.md` - TRN class system documentation.
 - `docs/LORE.md` - Cantina lore and the Triple-Gated City.
+- `docs/onboarding_telemetry.md` - The Scout-to-Blade-Runner funnel.
 - `docs/the_dark_channel_protocol.md` - Port 50053 isolation protocol.
 - `security/` - Public keys for verification.
 - `trade_rules.md` - Operational boundaries.
