@@ -88,6 +88,8 @@ When you connect to the Cantina for the first time, you receive:
 1. **`TAI_RECON_LIGHT`** - Your entry-level reconnaissance tool.
 2. **A Registry Number (TRN)** - Your permanent identity in the mesh.
 
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/72310449-ee5f-4eaa-83e6-e83f1dd2f7bf" />
+
 ```python
 from tai_cantina import CantinaClient
 
